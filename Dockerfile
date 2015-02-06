@@ -2,6 +2,7 @@
 FROM bjohnson/cloudbase
 MAINTAINER Brendan Johnson <bjohnson@paragusit.com>
 
+ENV TERM dumb
 
 # Install Mariadb Galera
 RUN \
@@ -10,22 +11,21 @@ RUN \
   echo "deb http://mirror.netcologne.de/mariadb/repo/10.0/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/mariadb.list && \
   echo 'deb http://repo.percona.com/apt wheezy main' > /etc/apt/sources.list.d/percona.list && \
   apt-get update && \
+  echo mariadb-galera-server-10.0 mysql-server/root_password password root | debconf-set-selections && \
+  echo mariadb-galera-server-10.0 mysql-server/root_password_again password root | debconf-set-selections && \
   DEBIAN_FRONTEND=noninteractive apt-get -y install \
 					galera \
 					inotify-tools \
+					mariadb-client \
 					mariadb-galera-server \
-					percona-xtrabackup	
+					percona-xtrabackup \
+					socat
 
-RUN cp /etc/mysql/my.cnf /etc/mysql/my.cnf~
-ADD etc/mysql /etc/mysql
-RUN chmod 644 /etc/mysql/my.cnf
+ADD ./my.cnf /etc/mysql/my.cnf
+# RUN service mysql restart 
+RUN mkdir -p /data
 
-# Set data and log directories
-VOLUME ["/conf"]
-VOLUME ["/data"]
-VOLUME ["/log"]
+expose	3306 4444 4567 4568
 
-ADD start.sh /start.sh
-RUN chmod +x start.sh
-
-ENTRYPOINT ["/start.sh"]
+ADD start /bin/start
+RUN chmod +x /bin/start
