@@ -19,6 +19,7 @@ RUN \
 					mariadb-client \
 					mariadb-galera-server \
 					percona-xtrabackup \
+					rsync \
 					socat
 
 ADD ./my.cnf /etc/mysql/my.cnf
