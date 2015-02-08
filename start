@@ -1,9 +1,6 @@
 #!/bin/bash
 
 firstrun() {
-        # Clear start up SQL commands
-        echo "" > /setup.sql
-
         # Initialize data dir if empty
         files_in_data_dir=`ls -1 /data | wc -w`
 
@@ -23,6 +20,10 @@ firstrun() {
 }
 
 main() {
+
+	# Clear start up SQL commands
+        echo "" > /setup.sql
+
 	if [[ ! -f /data/debian-10.0.flag ]]
 	then
 		firstrun

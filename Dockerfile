@@ -1,5 +1,5 @@
 # MariaDB Galera 10
-FROM bjohnson/cloudbase
+FROM bjohnson/cloudbase-ubuntu:14.04
 MAINTAINER Brendan Johnson <bjohnson@paragusit.com>
 
 ENV TERM dumb
@@ -20,13 +20,15 @@ RUN \
 					mariadb-galera-server \
 					percona-xtrabackup \
 					rsync \
-					socat
+					socat && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ADD ./my.cnf /etc/mysql/my.cnf
+COPY ./my.cnf /etc/mysql/my.cnf
 # RUN service mysql restart 
 RUN mkdir -p /data
 
-expose	3306 4444 4567 4568
+EXPOSE 3306 4444 4567 4568
 
-ADD start /bin/start
+COPY start /bin/start
 RUN chmod +x /bin/start
