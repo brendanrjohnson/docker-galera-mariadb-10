@@ -8,6 +8,7 @@ ENV TERM dumb
 RUN \
   apt-get update && apt-get -yq install \
     ca-certificates \
+    curl \
 		inotify-tools \
     locales \
     lsb-release \
