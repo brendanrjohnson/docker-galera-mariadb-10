@@ -19,7 +19,6 @@ RUN \
     strace \
     sudo \
     vim \
-    wget \
     --no-install-recommends
 
 # generate a local to suppress warnings
@@ -46,8 +45,10 @@ RUN \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # download latest stable etcdctl
-ADD https://s3-us-west-2.amazonaws.com/opdemand/etcdctl-v0.4.5 /usr/local/bin/etcdctl
-RUN chmod +x /usr/local/bin/etcdctl
+# ADD https://s3-us-west-2.amazonaws.com/opdemand/etcdctl-v0.4.5 /usr/local/bin/etcdctl
+RUN \
+  curl -o /usr/local/bin/etcdctl https://s3-us-west-2.amazonaws.com/opdemand/etcdctl-v0.4.5 && \
+  chmod +x /usr/local/bin/etcdctl
 
 # install confd
 ADD https://s3-us-west-2.amazonaws.com/opdemand/confd-v0.5.0-json /usr/local/bin/confd
