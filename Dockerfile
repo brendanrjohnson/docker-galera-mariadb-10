@@ -8,7 +8,6 @@ ENV TERM dumb
 RUN \
   apt-get update && apt-get -yq install \
     ca-certificates \
-		galera \
 		inotify-tools \
     locales \
     lsb-release \
