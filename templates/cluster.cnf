@@ -7,7 +7,7 @@ query_cache_type=0
 bind-address=0.0.0.0
 
 # Galera Provider Configuration
-wsrep_provider=/usr/lib/galera/libgalera_smm.s
+wsrep_provider=/usr/lib/galera/libgalera_smm.so
 wsrep_slave_threads=2
 
 # Galera Cluster Configuration
