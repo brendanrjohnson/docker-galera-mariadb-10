@@ -17,8 +17,8 @@ wsrep_cluster_address="gcomm://"
 
 # Galera Synchronization Congifuration
 wsrep_sst_auth={{ .database_credentials_repUser }}:{{ .database_credentials_repPass }}
-# wsrep_certify_nonPK=1
-# wsrep_convert_LOCK_to_trx=0
-# wsrep_auto_increment_control=1
-# wsrep_causal_reads=0
+wsrep_certify_nonPK=1
+wsrep_convert_LOCK_to_trx=0
+wsrep_auto_increment_control=1
+wsrep_causal_reads=0
 wsrep_sst_method=rsync
