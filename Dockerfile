@@ -47,7 +47,6 @@ RUN \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # download and install latest stable etcdctl and confd
-# ADD https://s3-us-west-2.amazonaws.com/opdemand/etcdctl-v0.4.5 /usr/local/bin/etcdctl
 RUN \
   curl -o /usr/local/bin/etcdctl https://s3-us-west-2.amazonaws.com/opdemand/etcdctl-v0.4.5 && \
   chmod +x /usr/local/bin/etcdctl && \
@@ -57,7 +56,7 @@ RUN \
 # Define mountable directories.
 VOLUME ["/var/lib/mysql"]
 
-ADD . /app
+COPY . /app
 
 # Define working directory.
 WORKDIR /app
