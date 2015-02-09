@@ -126,4 +126,4 @@ write_files:
     permissions: 0644
     content: |
       COREOS_PUBLIC_IPV4=192.168.39.21
-      COREOS_PRIVATE_IPV4=172.17.42.1
+      COREOS_PRIVATE_IPV4=192.168.39.21

@@ -62,6 +62,34 @@ coreos:
         What=/dev/vdb1
         Where=/var/lib/docker
         Type=btrfs
+    - name: database-data.service
+      command: start
+      enable: true
+      content: |
+        [Unit]
+        Description=database data
+        After=docker.service
+        [Service]
+        User=core
+        Type=oneshot
+        RemainAfterExit=yes
+        ExecStartPre=/usr/bin/docker pull docker-registry.paragusit.com/galeramariadb-ubuntu:14.04
+        ExecStart=/bin/sh -c "/usr/bin/docker inspect database-data >/dev/null 2>&1 || docker run --name database-data -v /var/lib/mysql docker-registry.paragusit.com/galeramariadb-ubuntu:14.04 true"
+    - name: database.service
+      command: start
+      enable: true
+      content: |
+        [Unit]
+        Description=database
+        After=database-data.service
+        [Service]
+        User=core
+        Restart=always
+        EnvironmentFile=/etc/environment
+        TimeoutStartSec=20m
+        ExecStartPre=/usr/bin/docker pull docker-registry.paragusit.com/galeramariadb-ubuntu:14.04
+        ExecStart=/bin/sh -c "/usr/bin/docker run --name database --rm -p 3306:3306 -p 4444:4444 -p 4567:4567 -p 4568:4568 -e PUBLISH=3306 -e HOST=$COREOS_PRIVATE_IPV4 -e CLUSTER=openstack-galera --volumes-from database-data docker-registry.paragusit.com/galeramariadb-ubuntu:14.04"
+        ExecStop=/usr/bin/docker stop database
 write_files:
   - path: /etc/ntp.conf
     content: |
@@ -76,3 +104,27 @@ write_files:
       restrict default nomodify nopeer noquery limited kod
       restrict 127.0.0.1
       restrict [::1]
+  - path: /etc/profile.d/db-functions.sh
+    permissions: '0755'
+    content: |
+      function nse() {
+        sudo nsenter --pid --uts --mount --ipc --net --target $(docker inspect --format="{{ .State.Pid }}" $1)
+      }
+      function dev_db() {
+        eval `cat /etc/environment`
+        /usr/bin/docker run -it -e DEBUG=1 -p 3306:3306 -p 4444:4444 -p 4567:4567 -p 4568:4568 -e PUBLISH=3306 -e HOST=$COREOS_PRIVATE_IPV4 -e CLUSTER=galera docker-registry.paragusit.com/galeramariadb-ubuntu:14.04 bash
+      }
+      function database() {
+        sudo nsenter --pid --uts --mount --ipc --net --target $(docker inspect --format="{{ .State.Pid }}" database)
+      }
+      function rebuild() {
+        docker build -t docker-registry.paragusit.com/galeramariadb-ubuntu:14.04 /home/core/dockerfile-galera-mariadb-10
+      }
+      function cleanup() {
+        etcdctl rm --recursive /database
+      }
+  - path: /etc/environment
+    permissions: 0644
+    content: |
+      COREOS_PUBLIC_IPV4=192.168.39.22
+      COREOS_PRIVATE_IPV4=192.168.39.22
