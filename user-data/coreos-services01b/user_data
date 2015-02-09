@@ -1,0 +1,78 @@
+#cloud-config
+
+ssh_authorized_keys:
+ - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCbULNGFhN9YY3dQF31kkmQHuYX3lGR/wE/y3o83hQyoXkpEnVlPzQPV+Y22JOjD/uJWCfQW7vfub+lkNZWC3h1+1TUD0CyiSlnhZ+VwiOkbyvJ1xLOLLmSbC4hZ+lLr8thlVxieYnun7B8oYSaonSAxq/WIjTvmICBtJIqoi54CRHyW53LhDRSm3hy2ouuE5epvXtZmfFbHQl3yLlf7cDB98677Shj/qhsrH0Qpovi5jSJo+cr3lrJkXttyQBzEh0BY21jz2M/Ch7Rq85YZ3hWwMiQuutD3TW09aZCncKsp2ukn0vtfkd/vhMoDgAHRRSH6ZUQ+J+y6n7gY3dQSvSh serveradmin@controller01
+ - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDFNLXF8OCQbw2PrYqmHwch2H2UrSamDQfm9gR97tjvQZSYsrVVOJ4MNwxk5HTw0xde7pixEUcpY2c3LWvwyydGk41LJtf743SNLvA47KYDFU/7N32/tVIkpHkgfXtSyVPnX3ORv3asxzcD8oKUCQPPDjMxRBLGKSvAxtXVQFqjD6pLmXfniD9fT9lHv1hR1Vz+lKGa6QHlaWeK4Wx+aGHKWVEuaXEemnplubwmdh2EtIKtEg3Ko15EgQAoNz6WgSsDQk0cr98GXbblSgE7j4CTfZCuWqrN1cZAg6fWXPeeQSn5a+kwERoWGktQ+twUmKSONtRbuR1LiXpYkre8Tyjb serveradmin@controller03
+ - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC46Yg9QmHuQGfsqNjA7nOGwuG+G1M/1IjsV2zZAA61PNJfzaV3fCDyf3Pu1y+Vy1pgQ1pEPvKiNLBZG8DXOsf/+keoR90M7WipxjuLxtSG37x52gbo38uGUFOJ/pKFC3YPHUPP7Isqmrv8GVJJ14af9Z0mkNP85r8T9S4Ag3xtBYs6PeBQ4Ejh0b9uhiALcIFnMv2WT11eADGib17tu/15kPKm6Exdmpp/RdzC39hItEwNmiRdTd/M5ONDb2Zb6ZxfUwLZL+vj/5jzq9op4XM9QCtaXMqX875pFHZ83Jd+6py6dNJSyMjOw7/nw9fwHOEz952dIi7aVE1ifK0BGpPD serveradmin@controller02
+ - ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAogSFA1cnM/9W26Ilnk8V6m28s5SEOVuAjx3mIzuM3yycsZIbO4tudkq4Ia0N05uQ+P9YR4C/Sf8beiOZxMyHeIANVexYsobUE/CEGRyS5REhjnBc282sLCN9N8RaTct02rEehkBTwy0LSf3DkmS2BjUpTnZx+KIaf3npF25EsU0+8IpTKbdOqTB8MJY7Cu4bPEzG43wrKkGhz+4/eJTEDUkmMO77U1vwGE87qplZeUPcFn186muig/Vhf920lTFOgSjYtv9o1C9BxDrZkYBjsIKSlB/u6CvRU1Eu7YZuh1GJmsGZ5PwTX4gR8WpY+cfyRp7DDqu4yd4LwFwC4QdTLQ== rsa-key-20150207
+ - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDRh9PrAxjXGW/qx3WMUMidL9zFHE6jkmx+9FD9Sn8U9PBnkv+5dw3AJez9lHMv+JdaYKiSphDPf0Es7UxkA8AZ/MYJY3EaYMZga23JzdshRyrBDZjfcjFk27WtN7ZcZjVm7+z+7iPfPNJKwgvNBjfF0IjYUht7Nmz2WJ0KKaV6PcYbWT9r6dPUzPmg6NPLhU9cu4FlEJOcKJMmY9PryPFptFDkZtTG2a1pOniB/ieXcYlpJz8smAV+5g6XDs47zAR1RtsQQyPkBmjRY2f4ZXmYFt1vBc8msTXbV8y5YfWjIW1jx3SSE4Pu9YGjJ94iagfyyhIuKHBsuj5NaMLnIEoT core@coreos-services01a
+ - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDdSLchU9tK5Q/3y1mf1iq2L4WsixkEpVmxD3WwNq0lPMXklDmeGPK1DKm0UOnoc+S+ttJe68f4AaeNBNaAHH1g6FAEhhAt4mYfSduB1Bt1ZOPYQJBEhBny9SkWe7gXLO4STaY2OYxLqS5BGMzWWVsRXpfCcwkCSoE45UCAdl9NjsfeYdEiS+S088uHQ20YOQ1FwLEIE/6D6wbFMu6u1+jaWxMUJ77noA3JjKE+8ANUgZd3BiRX+7Af2QZMI8c6q0S5POHJg9ckf9kxhiV6AGjyor2o1W2UGD8PRH0JFrdb+hVkCWEnCB9iOX6g4OYRH/vyO3q6tigEdQrSBin21Tyr core@coreos-services01b
+ - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCXG8zR5rAUnSbsucYAVCEzhYmWulx1sEs++r/p9PVbFmw3FSu5aM8w1HCO9wjMXZ4HhYL5jxSgq9FpCwwEqbrdAgFS+bAxLJROVpNjq7HeLihOsRnwSQY/ZFjjWDvWDuACO/T2wgb2c9e/2UiQkKfI09l+wS8SVcXZGD+3fjl2OhnSWQkVodJ9KEdzNCdfUps//cnocVjlvh/opb4GOUNQYl81LlmuB2r/hCY2b/4MenX7QFvxriaaZ6cVGsza/xzrYIEcPoGsc4+/3u8ZOJ4AiQqf3XxHw4B4tTl7AvZzBAOCNJyom6GyLoax1cqO6il1JB+tAPHe/51w42nvE7BX core@coreos-services01c
+ 
+hostname: coreos-services01b
+
+coreos:
+  etcd:
+    name: coreos-services01b
+    # generate a new token for each unique cluster from https://discovery.etcd.io/new
+    discovery: https://discovery.etcd.io/d062c599c9b04f867decaa528d9e5734
+    # multi-region and multi-cloud deployments need to use $public_ipv4
+    addr: 192.168.39.22:4001
+    peer-addr: 192.168.39.22:7001
+  units:
+    - name: 10-eth0.network
+      content: |
+        [Match]
+        MACAddress=52:54:00:cc:13:c5
+
+        [Network]
+        Address=192.168.39.22/24
+        Gateway=192.168.39.1
+        DNS=172.16.6.11
+        DNS=172.16.6.12
+        DNS=172.16.6.13
+    - name: etcd.service
+      command: start
+    - name: flanneld.service
+      drop-ins:
+        - name: 50-network-config.conf
+          content: |
+            [Service]
+            ExecStartPre=/usr/bin/etcdctl set /coreos.com/network/config '{ "Network": "10.12.0.0/16" }'
+      command: start
+    - name: fleet.service
+      command: start
+    - name: settimezone.service
+      command: start
+      content: |
+        [Unit]
+        Description=Set the timezone
+
+        [Service]
+        ExecStart=/usr/bin/timedatectl set-timezone UTC
+        RemainAfterExit=yes
+        Type=oneshot
+    - name: var-lib-docker.mount
+      command: start
+      content: |
+        [Unit]
+        Description=Mount to /var/lib/docker
+        Before=docker.service
+        [Mount]
+        What=/dev/vdb1
+        Where=/var/lib/docker
+        Type=btrfs
+write_files:
+  - path: /etc/ntp.conf
+    content: |
+      # Common pool
+      server 0.pool.ntp.org
+      server 1.pool.ntp.org
+      server 2.pool.ntp.org
+      server 3.pool.ntp.org
+
+      # - Allow only time queries, at a limited rate.
+      # - Allow all local queries (IPv4, IPv6)
+      restrict default nomodify nopeer noquery limited kod
+      restrict 127.0.0.1
+      restrict [::1]

@@ -1,5 +1,6 @@
 # MariaDB Galera 10
-FROM bjohnson/cloudbase-ubuntu:14.04
+# FROM bjohnson/cloudbase-ubuntu:14.04
+FROM docker-registry.paragusit.com/cloudbase-ubuntu:14.04
 MAINTAINER Brendan Johnson <bjohnson@paragusit.com>
 
 ENV TERM dumb
