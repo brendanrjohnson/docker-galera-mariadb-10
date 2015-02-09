@@ -1,6 +1,6 @@
 [mysqld]
 wsrep_provider=/usr/lib/galera/libgalera_smm.so
-wsrep_sst_method=xtrabackup-v2
+wsrep_sst_method=rsync
 wsrep_sst_auth={{ .database_credentials_repUser }}:{{ .database_credentials_repPass }}
 wsrep_cluster_name="{{ .database_cluster_name }}"
 binlog_format=ROW
