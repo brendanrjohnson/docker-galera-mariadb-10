@@ -1,0 +1,10 @@
+[mysqld]
+wsrep_provider=/usr/lib/galera/libgalera_smm.so
+wsrep_sst_method=rsync
+wsrep_sst_auth={{ .database_credentials_repUser }}:{{ .database_credentials_repPass }}
+wsrep_cluster_name="{{ .database_cluster_name }}"
+binlog_format=ROW
+default-storage-engine=innodb
+innodb_autoinc_lock_mode=2
+innodb_locks_unsafe_for_binlog=1
+bind-address=0.0.0.0
