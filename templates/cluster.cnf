@@ -2,7 +2,7 @@
 query_cache_size=0
 binlog_format=ROW
 default-storage-engine=innodb
-innodb_autoinc_lock_mode=2
+# innodb_autoinc_lock_mode=2
 innodb_locks_unsafe_for_binlog=1
 query_cache_type=0
 bind-address=0.0.0.0

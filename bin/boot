@@ -27,8 +27,8 @@ if [[ -z $HOST ]]; then
   echo '==> $HOST not set.  booting mysql without clustering.'
   init_database
   echo "==> database running..."
-  touch /var/log/mysql/error.log
-  tail -f /var/log/mysql/error.log &
+  touch /var/log/mysql-error.log
+  tail -f /var/log/mysql-error.log &
   mysqld_safe $DB_OPTIONS
   exit $?
 fi
@@ -109,7 +109,7 @@ while [[ -z $(netstat -lnt | awk "\$6 == \"LISTEN\" && \$4 ~ \".$PUBLISH\" && \$
 
 echo "==> database running..."
 
-tail -f /var/log/mysql/error.log &
+tail -f /var/log/mysql-error.log &
 
 # publish the service to etcd using the injected HOST and PORT
 if [[ ! -z $PUBLISH ]]; then
