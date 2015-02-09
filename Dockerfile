@@ -39,6 +39,7 @@ RUN \
   apt-get install -y \
       mariadb-client \
       mariadb-galera-server \
+      percona-toolkit \
       percona-xtrabackup \
       rsync && \
   sed -i 's/^\(bind-address\s.*\)/# \1/' /etc/mysql/my.cnf && \
