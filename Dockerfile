@@ -17,6 +17,7 @@ RUN \
     make \
     netcat \
     net-tools \
+    pwgen \
 		socat \
     strace \
     sudo \
