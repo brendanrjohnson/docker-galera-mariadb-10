@@ -22,6 +22,7 @@ REP_PASS=${REP_PASS:-replicator}
 PORT=${PUBLISH:-3306}
 PROTO=${PROTO:-tcp}
 ETCD_HOST=${ETCD_HOST:-$HOST}
+NODEIP=$(ip -f inet -o addr show eth0|cut -d\  -f 7 | cut -d/ -f 1)
 
 if [[ -z $HOST ]]; then
   echo '==> $HOST not set.  booting mysql without clustering.'
@@ -40,7 +41,7 @@ etcd_set_default credentials/adminUser ${MYSQL_USER}
 etcd_set_default credentials/adminPass ${MYSQL_PASS}
 etcd_set_default credentials/repUser ${REP_USER}
 etcd_set_default credentials/repPass ${REP_PASS}
-etcd_set_default host $HOST
+etcd_set_default host $NODEIP
 etcd_set_default port $PORT
 
 if [[ ! -z $CLUSTER ]]; then
@@ -58,7 +59,7 @@ done
 # initialize data volume
 init_database
 
-WSREP_OPTIONS="--wsrep_node_address=$HOST $DB_OPTIONS"
+WSREP_OPTIONS="--wsrep_node_address=$NODEIP $DB_OPTIONS"
 cluster_members
 
 echo Starting MySQL for reals
