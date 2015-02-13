@@ -3,7 +3,7 @@
 function configure_etcd() {
   export ETCD_PORT=${ETCD_PORT:-4001}
   export ETCD="$ETCD_HOST:$ETCD_PORT"
-  export ETCD_PATH=${ETCD_PATH:-/database}
+  export ETCD_PATH=${ETCD_PATH:-/galera}
   export ETCD_TTL=${ETCD_TTL:-10}
   export ETCD_OPTIONS="--no-sync -C $ETCD"
   # wait for etcd to be available
@@ -53,10 +53,7 @@ function cluster_members() {
 }
 
 function publish_to_etcd() {
-  if [[ -z $CLUSTER ]]; then
-    etcdctl $ETCD_OPTIONS set $ETCD_PATH/host $NODEIP --ttl $ETCD_TTL >/dev/null
-    etcdctl $ETCD_OPTIONS set $ETCD_PATH/port $PUBLISH --ttl $ETCD_TTL >/dev/null
-  else
+  if [[ -n $CLUSTER ]]; then
     etcdctl $ETCD_OPTIONS set $ETCD_PATH/cluster/galeraEndpoints/$HOSTNAME $NODEIP:4567 --ttl $ETCD_TTL >/dev/null
     etcdctl $ETCD_OPTIONS set $ETCD_PATH/cluster/mysqlNodes/$HOSTNAME $NODEIP:$PUBLISH --ttl $ETCD_TTL >/dev/null
   fi

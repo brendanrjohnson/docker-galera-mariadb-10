@@ -36,13 +36,10 @@ fi
 
 configure_etcd
 
-etcd_set_default engine mariadb
 etcd_set_default credentials/adminUser ${MYSQL_USER}
 etcd_set_default credentials/adminPass ${MYSQL_PASS}
 etcd_set_default credentials/repUser ${REP_USER}
 etcd_set_default credentials/repPass ${REP_PASS}
-etcd_set_default host $NODEIP
-etcd_set_default port $PORT
 
 if [[ ! -z $CLUSTER ]]; then
   etcd_set_default cluster/name ${CLUSTER}
