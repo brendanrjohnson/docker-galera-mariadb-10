@@ -12,11 +12,11 @@ wsrep_provider=/usr/lib/galera/libgalera_smm.so
 # wsrep_slave_threads=2
 
 # Galera Cluster Configuration
-wsrep_cluster_name="{{ .database_cluster_name }}"
+wsrep_cluster_name="{{ .galera_cluster_name }}"
 wsrep_cluster_address="gcomm://"
 
 # Galera Synchronization Congifuration
-wsrep_sst_auth={{ .database_credentials_repUser }}:{{ .database_credentials_repPass }}
+wsrep_sst_auth={{ .galera_credentials_repUser }}:{{ .galera_credentials_repPass }}
 wsrep_certify_nonPK=1
 wsrep_convert_LOCK_to_trx=0
 wsrep_auto_increment_control=1
