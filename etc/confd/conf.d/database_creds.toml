@@ -1,10 +1,10 @@
 [template]
 src   = "database_creds"
-dest  = "/app/bin/database_creds"
+dest  = "/usr/local/bin/database_creds"
 owner = "root"
 group = "root"
 mode  = "0755"
 keys = [
   "/galera/credentials",
 ]
-check_cmd = "/app/bin/check {{ .src }}"
+check_cmd = "/usr/local/bin/check {{ .src }}"

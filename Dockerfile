@@ -51,22 +51,20 @@ RUN \
 # download and install latest stable etcdctl and confd
 RUN \
   curl -o /usr/local/bin/etcdctl https://s3-us-west-2.amazonaws.com/opdemand/etcdctl-v0.4.5 && \
-  chmod +x /usr/local/bin/etcdctl && \
-  curl -o /usr/local/bin/confd https://s3-us-west-2.amazonaws.com/opdemand/confd-v0.5.0-json && \
-  chmod +x /usr/local/bin/confd
+  curl -o /usr/local/bin/confd https://s3-us-west-2.amazonaws.com/opdemand/confd-v0.5.0-json
 
 # Define mountable directories.
 VOLUME ["/var/lib/mysql"]
 
-COPY . /app
+COPY usr/local/bin/* /usr/local/bin/
+COPY etc/confd/templates/* /etc/confd/templates/
+COPY etc/confd/conf.d/* /etc/confd/conf.d/
+COPY etc/confd/confd.toml  /etc/confd/confd.toml
 
-# Define working directory.
-WORKDIR /app
-
-RUN chmod +x /app/bin/*
+RUN chmod +x /usr/local/bin/*
 
 # Define default command.
-CMD ["/app/bin/boot"]
+CMD ["/usr/local/bin/boot"]
 
 # Expose ports.
 EXPOSE 3306 4444 4567 4568
