@@ -1,5 +1,5 @@
 [confd]
-confdir  = "/app"
+confdir  = "/etc/confd"
 interval = 5
 prefix   = "/"
 quiet = true

@@ -38,7 +38,7 @@ function init_database() {
   echo "-----> sleeping for 20 seconds, then testing if DB is up"
   sleep 20
   while [[ -z $(netstat -lnt | awk "\$6 == \"LISTEN\" && \$4 ~ \".$PUBLISH\" && \$1 ~ \"$PROTO.?\"") ]] ; do sleep 1; done
-  [[ -z $HOST ]] && mysql_creds || /app/bin/database_creds
+  [[ -z $HOST ]] && mysql_creds || /usr/local/bin/database_creds
   echo "==> stopping mysql after setting up passwords"
   mysqladmin shutdown
 }
