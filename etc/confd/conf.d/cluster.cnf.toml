@@ -7,7 +7,7 @@ mode  = "0644"
 keys = [
   "/galera/cluster/name",
   "/galera/credentials/repUser",
-  "/galera/credentials/repPass"
+  "/galera/credentials/repPass",
 ]
 check_cmd = "/usr/sbin/mysqld --help > /dev/null"
 reload_cmd = "ps axu | grep '/usr/sbin/mysqld' | grep -v grep | awk '{ print $2 }'"
